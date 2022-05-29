@@ -17,8 +17,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        API.contact.getLocationData { response, error in
-            guard let city = response, error == nil else {
+        API.contact.getLocationData { city, error in
+            guard let city = city, error == nil else {
                 fatalError("Failed to load city")
             }
             
