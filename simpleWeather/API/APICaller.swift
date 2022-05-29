@@ -6,15 +6,17 @@
 //
 
 import Foundation
-import CoreLocation
+//import CoreLocation
 
 class API
 {
     static let contact = API()
     
-    func getLocationData(_ completion: @escaping(LocationData?, Error?) -> Void)
+    func getLocationData(latitude: Double = 24.55305,
+                         longitude: Double = -81.78889,
+                         _ completion: @escaping(LocationData?, Error?) -> Void)
     {
-        let url = URL(string: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apikey)&q=24.55305,-81.78889&details=false")!
+        let url = URL(string: "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=\(apikey)&q=\(latitude),\(longitude)&details=false")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {
@@ -33,7 +35,8 @@ class API
         .resume()
     }
 
-    func getWeather(from city: String, _ completion: @escaping([CityWeatherData]?, Error?) -> Void)
+    func getWeather(from city: String,
+                    _ completion: @escaping([CityWeatherData]?, Error?) -> Void)
     {
         let url = URL(string: "https://dataservice.accuweather.com/forecasts/v1/hourly/1hour/\(city)?apikey=\(apikey)")!
         
@@ -55,3 +58,6 @@ class API
         .resume()
     }
 }
+
+// Base URL for images
+let url = "https://developer.accuweather.com/sites/default/files/\("weatherIcon")-s.png"

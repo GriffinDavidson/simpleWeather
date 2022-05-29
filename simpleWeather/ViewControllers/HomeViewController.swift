@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
         
         API.contact.getLocationData { city, error in
             guard let city = city, error == nil else {
@@ -29,14 +30,12 @@ class HomeViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.title = city.localizedCityName
-                    self.degreeLabel.text = "\(data[0].temperature.value)"
+                    self.degreeLabel.text = "\(data[0].temperature.value)°\(data[0].temperature.unit)"
                     self.phraseLabel.text = data[0].phrase
                     self.precipitationProbabilityLabel.text = "Chance of rain: \(data[0].precipitationProbability)%"
                 }
             }
         }
-        
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         // Do any additional setup after loading the view.
     }
     
