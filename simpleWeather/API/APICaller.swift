@@ -58,6 +58,3 @@ class API
         .resume()
     }
 }
-
-// Base URL for images
-let url = "https://developer.accuweather.com/sites/default/files/\("weatherIcon")-s.png"
