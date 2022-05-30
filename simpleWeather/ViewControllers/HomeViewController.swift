@@ -22,12 +22,14 @@ class HomeViewController: UIViewController {
         
         API.contact.getLocationData { city, error in
             guard let city = city, error == nil else {
-                fatalError("Failed to load city")
+                print("Failed to load geographical data!")
+                return
             }
             
             API.contact.getWeather(from: city.key) { data, error in
                 guard let data = data, error == nil else {
-                    fatalError("Failed to load weather")
+                    print("Failed to load weather data!")
+                    return
                 }
                 
                 DispatchQueue.main.async {
