@@ -36,8 +36,9 @@ class HomeViewController: UIViewController {
                     self.phraseLabel.text = data[0].phrase
                     self.precipitationProbabilityLabel.text = "Chance of rain: \(data[0].precipitationProbability)%"
                     
-                    let imageURL = URL(string: "https://developer.accuweather.com/sites/default/files/\(data[0].weatherIcon)-s.png")!
-                    print(data[0].weatherIcon)
+                    let fixedWeatherIcon = String(format: "%02d", data[0].weatherIcon)
+                    
+                    let imageURL = URL(string: "https://developer.accuweather.com/sites/default/files/\(fixedWeatherIcon)-s.png")!
                     let imageData = try? Data(contentsOf: imageURL)
                     
                     if let image = imageData {
