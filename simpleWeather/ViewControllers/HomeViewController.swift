@@ -8,6 +8,8 @@
 import UIKit
 import CoreLocation
 
+// test
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var degreeLabel: UILabel!
